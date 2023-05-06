@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Highcharts</title>
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+  </head>
+  <body>
+    <div id="chart-calorie"></div>
+    <script>
+      // Read the data from the file
+      fetch("calorie.txt")
+        .then((response) => response.text())
+        .then((text) => {
+          // Split the data into labels and values
+          const data = text.trim().split(": ")[1].split(",");
+          const labels = data.map((_, i) => `Day ${i + 1}`);
+          const values = data.map(parseFloat);
+
+          // Create the chart
+          Highcharts.chart("chart-calorie", {
+            title: { text: "Calorie Chart" },
+            xAxis: { categories: labels },
+            yAxis: { title: { text: "Calorie (C)" } },
+            series: [{ name: "Calorie", data: values }],
+          });
+        });
+    </script>
+
+    <div id="chart-steps"></div>
+    <script>
+        // Read the data from the file
+        fetch("steps.txt")
+          .then((response) => response.text())
+          .then((text) => {
+            // Split the data into labels and values
+            const data = text.trim().split(": ")[1].split(",");
+            const labels = data.map((_, i) => `Day ${i + 1}`);
+            const values = data.map(parseFloat);
+  
+            // Create the chart
+            Highcharts.chart("chart-steps", {
+              title: { text: "steps Chart" },
+              xAxis: { categories: labels },
+              yAxis: { title: { text: "steps" } },
+              series: [{ name: "steps", data: values }],
+            });
+          });
+      </script>
+  </body>
+</html>
