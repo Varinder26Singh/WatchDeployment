@@ -25,7 +25,7 @@ async function handleCallback(code) {
     console.error('Error getting tokens:', error);
   }
 }
-app.get('/auth', (req, res) => {
+app.get('/', (req, res) => {
   const authUrl = getAuthorizationUrl();
   res.redirect(authUrl);
 });
